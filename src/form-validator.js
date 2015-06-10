@@ -15,13 +15,13 @@ var FormValidator = (function($, window){
 
 	/**
 		Attributes:
-			selector (required)
-			name (optional)
-			required (optional, default is false)
-			match (optional, regex)
-			sameAs (optional, a field to be the same)
-			error (optional, error callback function)
-			success (optional, success callback function)
+			@selector (required)
+			@name (optional)
+			@required (optional, default is false)
+			@match (optional, regex)
+			@sameAs (optional, a field to be the same)
+			@error (optional, error callback function)
+			@success (optional, success callback function)
 	 **/
 
 	FormValidator.prototype.config = function(fieldArray) {
@@ -162,11 +162,17 @@ var FormValidator = (function($, window){
 
 	}
 
+
+
 	// FormValidator.prototype.customizeErrorMessage = function(obj) {
 
 	// }
 
 	return FormValidator;
+
+
+
+
 
 })(jQuery, window);
 
