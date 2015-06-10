@@ -115,9 +115,57 @@ required: true,
 
 If you didn't fill out this field, the error message would be "Your Password is required"
 
+###### match (optional)
+The regular expression this field should match, the value must be a **RegExp** object.
+
+###### sameAs (optional)
+The value is the selector of the field which current field should be the same as. For example, if current field is **password again**
+
+```javascript
+//...
+selector: '.password-again'
+name: 'Password Again'
+sameAs: '.password'  // the password
+//...
+```
+
+###### error & success
+The value is a function which would be invoked when the field is valid or not
 
 
+#### Error Object
 
+When the form is invalid, we can get the error object array by this:
+
+```javascript
+validator.errorMsgs.forEach(function(err){
+	// customize error message
+	// ...
+})
+```
+
+err object consists of name(the name of entity), attribute(the invalid type, like required, match), msg(The error message generated automatically according to the name).
+
+for example:
+
+```javascript
+$('.form').submit(function(){
+	if (validator.submit()) // all legal
+		return true;
+
+	validator.errorMsgs.forEach(function(err){
+
+		// customize error message
+		if (err.name == 'Password again' && err.attribute == 'sameAs') {
+			err.msg = err.msg + ' as password';
+		}
+
+		var $err = $('<p class="text-danger">'+err.msg+'</p>')
+		$('.form').prepend($err);
+	})
+	return false;
+}) //form submit
+```
 
 
 
